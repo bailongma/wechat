@@ -1,0 +1,25 @@
+<?php
+error_reporting(E_ALL);
+
+date_default_timezone_set('Asia/Shanghai');
+
+define('IN', true);
+define('PHP_DEV_VERSION', '5.5.28');
+define('ENVIRONMENT', 'developed');
+
+error_log("x",3,'./logs/logs');
+
+if (version_compare(PHP_VERSION, PHP_DEV_VERSION) < 0) {
+    exit('I am at least PHP version '.PHP_DEV_VERSION.', my version: ' . PHP_VERSION . "\n");
+}
+
+
+function __autoload($class) {
+  set_include_path("./api");
+  $class = str_replace('\\', '/', $class) . '.php';
+  require_once($class);
+}
+
+use api\wechat;
+
+new wechat();
