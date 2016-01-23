@@ -2,11 +2,11 @@
 namespace api;
 defined('IN')?:exit('not access');
 
-
+use api\WechatBase as WechatBase;
 /**
 *
 */
-class Wechat
+class Wechat extends WechatBase
 {
     private $appid = '';
     private $token = '';
@@ -16,5 +16,6 @@ class Wechat
     {
         # code...
         echo  'hello wechat';
+        echo  self::api_version;
     }
 }
