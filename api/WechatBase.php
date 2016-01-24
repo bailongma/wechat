@@ -12,4 +12,15 @@ abstract class WechatBase
     {
         # code...
     }
+
+    public function errcode()
+    {
+        if($this->result) {
+            $msg = json_decode($this->result);
+            if($msg->errcode!='0') {
+                error_log($msg->errcode);
+            }
+
+        }
+    }
 }
