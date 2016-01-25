@@ -13,9 +13,10 @@ class Wechat extends WechatBase
         parent::__construct($argument);
         $this->valid();
         $result = $this->parseData();
-        if($result->MsgType==self::TEXT) {
-            $this->sendText($result->fromUsername, $result->toUsername, self::TEXT, $result->Content);
+        if($result) {
+            if($result->MsgType==self::TEXT) {
+                $this->sendText($result->fromUsername, $result->toUsername, self::TEXT, $result->Content);
+            }
         }
-
     }
 }
