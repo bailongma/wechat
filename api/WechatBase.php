@@ -54,16 +54,12 @@ abstract class WechatBase
 
     public function parseData()
     {
-        if($_POST) {
-            $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-            if (!empty($postStr)){
-                libxml_disable_entity_loader(true);
-                $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-                return $postObj;
-            }else {
-                return false;
-            }
-        } else {
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        if (!empty($postStr)){
+            libxml_disable_entity_loader(true);
+            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            return $postObj;
+        }else {
             return false;
         }
     }
@@ -85,6 +81,7 @@ abstract class WechatBase
                     </xml>";
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $msgType, $content);
         echo $resultStr;
+        exit;
     }
 
     public function log($str,$key='')
