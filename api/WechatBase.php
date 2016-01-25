@@ -54,7 +54,7 @@ abstract class WechatBase
 
     public function parseData()
     {
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        $postStr = file_get_contents("php://input");
         if (!empty($postStr)){
             $this->log($postStr,'post');
             libxml_disable_entity_loader(true);
