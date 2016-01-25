@@ -57,6 +57,7 @@ abstract class WechatBase
         if($_POST) {
             $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
             if (!empty($postStr)){
+                libxml_disable_entity_loader(true);
                 $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
                 return $postObj;
             }else {
