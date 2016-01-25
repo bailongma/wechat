@@ -54,12 +54,16 @@ abstract class WechatBase
     public function parseData()
     {
         $return = array();
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        if (!empty($postStr)){
-            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            return $postObj;
-        }else {
-            return $return;
+        if($_POST) {
+            $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+            if (!empty($postStr)){
+                $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+                return $postObj;
+            }else {
+                return $return;
+            }
+        } else {
+            return false;
         }
     }
 
