@@ -14,8 +14,8 @@ class Wechat extends WechatBase
 
     public function __construct($argument=[])
     {
-        # code...
-        echo  'hello wechat';
-        echo  self::api_version;
+        $this->valid();
+        $result = $this->parseData();
+        sendText();
     }
 }
