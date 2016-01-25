@@ -32,7 +32,7 @@ abstract class WechatBase
     }
     private function checkSignature()
     {
-        if($_GET){
+        if(!empty($_GET["echostr"])){
             $signature = $_GET["signature"];
             $timestamp = $_GET["timestamp"];
             $nonce = $_GET["nonce"];
