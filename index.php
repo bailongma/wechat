@@ -17,7 +17,7 @@ function __autoload($class) {
   $class = str_replace('\\', '/', $class) . '.php';
   require_once($class);
 }
-
+ob_start();
 use api\Wechat;
 
 $wx['appId'] = '';
@@ -26,3 +26,6 @@ $wx['token'] = '';
 $wx['encodingAESKey'] = '';
 
 new Wechat($wx);
+$page = ob_get_contents();
+error_log($page,3,'logs/logs');
+ob_end_flush();
