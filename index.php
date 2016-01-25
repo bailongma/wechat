@@ -8,8 +8,6 @@ define('PHP_DEV_VERSION', '5.5.28');
 define('ENVIRONMENT', 'developed');
 define('ERROR_LOG_FILE', './logs/logs');
 
-//error_log("x",3,'./logs/logs');
-
 if (version_compare(PHP_VERSION, PHP_DEV_VERSION) < 0) {
     exit('I am at least PHP version '.PHP_DEV_VERSION.', my version: ' . PHP_VERSION . "\n");
 }
