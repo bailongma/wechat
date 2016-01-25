@@ -1,6 +1,7 @@
 <?php
 namespace api;
 defined('IN')?:exit('not access');
+define('ERROR_LOG_FILE', './logs/logs');
 /**
 *
 */
@@ -18,7 +19,7 @@ abstract class WechatBase
         if($this->result) {
             $msg = json_decode($this->result);
             if($msg->errcode!='0') {
-                error_log($msg->errcode);
+                error_log($this->result, 3, ERROR_LOG_FILE);
             }
 
         }
