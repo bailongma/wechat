@@ -14,7 +14,7 @@ class Wechat extends WechatBase
         $this->valid();
         $result = $this->parseData();
         if($result) {
-            $this->sendText($result->FromUserName, $result->ToUsername, self::TEXT, $result->Content);
+            $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $result->Content);
         }
     }
 }
