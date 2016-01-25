@@ -81,6 +81,7 @@ abstract class WechatBase
                     <FuncFlag>0</FuncFlag>
                     </xml>";
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $msgType, $content);
+        $this->log($resultStr,'result');
         echo $resultStr;
         exit;
     }
