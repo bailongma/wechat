@@ -7,11 +7,18 @@ defined('IN')?:exit('not access');
 */
 abstract class WechatBase
 {
-    const api_version = "1";
     const TEXT = 'text';
+
+    private $appId = "";
+    private $token = "";
+    private $encodingAESKey = "";
+    private $access_token = '';
+
     function __construct($argument=[])
     {
-        # code...
+        $this->appId = $argument['appId'];
+        $this->token = $argument['token'];
+        $this->encodingAESKey = $argument['encodingAESKey'];
     }
     public function valid()
     {
@@ -44,7 +51,8 @@ abstract class WechatBase
         }
     }
 
-    public function parseData(){
+    public function parseData()
+    {
         $return = array();
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         if (!empty($postStr)){
@@ -53,6 +61,11 @@ abstract class WechatBase
         }else {
             return $return;
         }
+    }
+
+    public function replay()
+    {
+        #
     }
 
     public function sendText($fromUsername,$toUsername,$msgType,$content)

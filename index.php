@@ -22,4 +22,8 @@ function __autoload($class) {
 
 use api\Wechat;
 
-new Wechat();
+$appid = '';
+$token = '';
+$encodingAESKey = '';
+
+new Wechat($appid, $token, $encodingAESKey);
