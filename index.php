@@ -6,6 +6,7 @@ date_default_timezone_set('Asia/Shanghai');
 define('IN', true);
 define('PHP_DEV_VERSION', '5.5.28');
 define('ENVIRONMENT', 'developed');
+define('ERROR_LOG_FILE', './logs/logs');
 
 //error_log("x",3,'./logs/logs');
 

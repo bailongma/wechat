@@ -1,8 +1,7 @@
 <?php
 namespace api;
 defined('IN')?:exit('not access');
-define('ERROR_LOG_FILE', './logs/logs');
-define('TOKEN', 'xxxxxxxxxxxxx');
+
 /**
 *
 */
@@ -10,7 +9,7 @@ abstract class WechatBase
 {
     const api_version = "1";
     const TEXT = 'text';
-    function __construct()
+    function __construct($argument=[])
     {
         # code...
     }
@@ -50,8 +49,6 @@ abstract class WechatBase
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         if (!empty($postStr)){
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $postObj = json_encode($postObj);
-            $postObj = json_decode($postObj,1);
             return $postObj;
         }else {
             return $return;
