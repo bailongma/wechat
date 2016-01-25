@@ -10,6 +10,7 @@ abstract class WechatBase
     const TEXT = 'text';
 
     private $appId = "";
+    private $appSecret = "";
     private $token = "";
     private $encodingAESKey = "";
     private $access_token = '';
@@ -17,6 +18,7 @@ abstract class WechatBase
     function __construct($argument=[])
     {
         $this->appId = $argument['appId'];
+        $this->appSecret = $argument['appSecret'];
         $this->token = $argument['token'];
         $this->encodingAESKey = $argument['encodingAESKey'];
     }
@@ -35,8 +37,7 @@ abstract class WechatBase
             $timestamp = $_GET["timestamp"];
             $nonce = $_GET["nonce"];
 
-            $token = TOKEN;
-            $tmpArr = array($token, $timestamp, $nonce);
+            $tmpArr = array($this->token, $timestamp, $nonce);
             sort($tmpArr, SORT_STRING);
             $tmpStr = implode( $tmpArr );
             $tmpStr = sha1( $tmpStr );

@@ -21,6 +21,7 @@ function __autoload($class) {
 use api\Wechat;
 
 $wx['appId'] = '';
+$wx['appSecret'] =  '';
 $wx['token'] = '';
 $wx['encodingAESKey'] = '';
 
