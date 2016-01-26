@@ -12,8 +12,9 @@ abstract class WechatBase
     private $appSecret = "";
     private $token = "";
     private $encodingAESKey = "";
-    private $access_token = '';
+    private $access_token = "";
 
+    public  $result =  "";
     private $token_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential';
     function __construct($argument=[])
     {
@@ -63,6 +64,7 @@ abstract class WechatBase
             $this->log($postStr,'post');
             libxml_disable_entity_loader(true);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $this->result = $postObj;
             return $postObj;
         }else {
             return false;
@@ -73,7 +75,34 @@ abstract class WechatBase
     {
         #
     }
-
+    public function getContent()
+    {
+        return $this->result->Content;
+    }
+    public function getToUserName()
+    {
+        return $this->result->ToUserName;
+    }
+    public function getFromUserName()
+    {
+        return $this->result->FromUserName;
+    }
+    public function getCreateTime()
+    {
+        return $this->result->CreateTime;
+    }
+    public function getMsgType()
+    {
+        return $this->result->CreateTime;
+    }
+    public function getMediaId()
+    {
+        return $this->result->MediaId;
+    }
+    public function getFormat()
+    {
+        return $this->result->Format;
+    }
     public function sendText($fromUsername,$toUsername,$msgType,$content)
     {
         $textTpl = "<xml>
