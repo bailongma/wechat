@@ -1,12 +1,13 @@
 <?php
 error_reporting(E_ALL);
-
 date_default_timezone_set('Asia/Shanghai');
 
 define('IN', true);
+define('DEBUG', true);
 define('PHP_DEV_VERSION', '5.5.28');
 define('ENVIRONMENT', 'developed');
-define('ERROR_LOG_FILE', './logs/logs');
+define('SYSTEM_DIR', getcwd());
+define('ERROR_LOG_FILE', SYSTEM_DIR.'/logs/logs');
 
 if (version_compare(PHP_VERSION, PHP_DEV_VERSION) < 0) {
     exit('I am at least PHP version '.PHP_DEV_VERSION.', my version: ' . PHP_VERSION . "\n");
@@ -27,5 +28,5 @@ $wx['encodingAESKey'] = '';
 
 new Wechat($wx);
 $page = ob_get_contents();
-error_log($page,3,'logs/logs');
+error_log($page,3, ERROR_LOG_FILE);
 ob_end_flush();

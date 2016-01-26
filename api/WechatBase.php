@@ -8,7 +8,6 @@ defined('IN')?:exit('not access');
 abstract class WechatBase
 {
     const TEXT = 'text';
-    const DEBUG = true;
     private $appId = "";
     private $appSecret = "";
     private $token = "";
@@ -88,7 +87,7 @@ abstract class WechatBase
 
     public function log($str,$key='')
     {
-        if(self::DEBUG) {
+        if(DEBUG) {
             $d = date("[Y-m-d H:i:s]");
             error_log($key.$d.$str."\n", 3, ERROR_LOG_FILE);
         }
