@@ -14,9 +14,9 @@ if (version_compare(PHP_VERSION, PHP_DEV_VERSION) < 0) {
 }
 
 function __autoload($class) {
-  set_include_path("./api");
-  $class = str_replace('\\', '/', $class) . '.php';
-  require_once($class);
+    set_include_path("./api");
+    $class = str_replace('\\', '/', $class) . '.php';
+    require_once($class);
 }
 ob_start();
 use api\Wechat;

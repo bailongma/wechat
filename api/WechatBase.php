@@ -14,6 +14,7 @@ abstract class WechatBase
     private $encodingAESKey = "";
     private $access_token = '';
 
+    private $token_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential';
     function __construct($argument=[])
     {
         $this->appId = $argument['appId'];
@@ -28,6 +29,10 @@ abstract class WechatBase
             $this->log('checktoken', 'token');
             exit;
         }
+    }
+    public function getAccessToken()
+    {
+        #&appid=APPID&secret=APPSECRET
     }
     private function checkSignature()
     {
