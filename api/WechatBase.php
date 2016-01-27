@@ -102,27 +102,47 @@ abstract class WechatBase
     }
     public function setContent($Content)
     {
-        return $this->replay['Content'] =  $Content;
+        $this->replay['Content'] = $Content;
     }
     public function getToUserName()
     {
         return $this->result->ToUserName;
     }
+    public function setToUserName($ToUserName)
+    {
+        $this->replay['ToUserName'] = $ToUserName;
+    }
     public function getFromUserName()
     {
         return $this->result->FromUserName;
+    }
+    public function setFromUserName($FromUserName)
+    {
+        $this->replay['FromUserName'] = $FromUserName;
     }
     public function getCreateTime()
     {
         return $this->result->CreateTime;
     }
+    public function setCreateTime($CreateTime)
+    {
+        $this->replay['CreateTime'] = $CreateTime;
+    }
     public function getMsgType()
     {
-        return $this->result->CreateTime;
+        return $this->result->MsgType;
+    }
+    public function setMsgType($MsgType)
+    {
+        $this->replay['MsgType'] = $MsgType;
     }
     public function getMediaId()
     {
         return $this->result->MediaId;
+    }
+    public function setMediaId($MediaId)
+    {
+        $this->replay['MediaId'] = $MediaId;
     }
     public function getFormat()
     {
