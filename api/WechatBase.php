@@ -83,15 +83,26 @@ abstract class WechatBase
 
     public function replay()
     {
-        $textTpl = "<xml>
-                    <ToUserName><![CDATA[%s]]></ToUserName>
-                    <FromUserName><![CDATA[%s]]></FromUserName>
-                    <CreateTime>%s</CreateTime>
-                    <MsgType><![CDATA[%s]]></MsgType>
-                    <Content><![CDATA[%s]]></Content>
-                    <FuncFlag>0</FuncFlag>
-                    </xml>";
-        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $msgType, $content);
+        $resultStr = '<xml>';
+        foreach ($this->replay as $key => $value) {
+            $resultStr .= '<'.$key.'>';
+            if(is_array($value)) {
+                foreach ($value as $k => $v) {
+                    $resultStr .= '<'.$k.'>'.$v.'</'.$k.'>';
+                }
+            } else {
+                if($key=='CreateTime') {
+                    $resultStr .= $value;
+                } else {
+                    $resultStr .= '<![CDATA['.$value.']]>';
+                }
+            }
+            $resultStr .= '</'.$key.'>';
+        }
+        if(!array_key_exists('CreateTime', $this->replay)) {
+            $resultStr .= '<CreateTime>'.time().'</CreateTime>';
+        }
+        $resultStr .= '</xml>';
         $this->log($resultStr,'result');
         echo $resultStr;
         exit;
@@ -103,6 +114,7 @@ abstract class WechatBase
     public function setContent($Content)
     {
         $this->replay['Content'] = $Content;
+        return $this;
     }
     public function getToUserName()
     {
@@ -111,6 +123,7 @@ abstract class WechatBase
     public function setToUserName($ToUserName)
     {
         $this->replay['ToUserName'] = $ToUserName;
+        return $this;
     }
     public function getFromUserName()
     {
@@ -119,6 +132,7 @@ abstract class WechatBase
     public function setFromUserName($FromUserName)
     {
         $this->replay['FromUserName'] = $FromUserName;
+        return $this;
     }
     public function getCreateTime()
     {
@@ -127,6 +141,7 @@ abstract class WechatBase
     public function setCreateTime($CreateTime)
     {
         $this->replay['CreateTime'] = $CreateTime;
+        return $this;
     }
     public function getMsgType()
     {
@@ -135,6 +150,7 @@ abstract class WechatBase
     public function setMsgType($MsgType)
     {
         $this->replay['MsgType'] = $MsgType;
+        return $this;
     }
     public function getMediaId()
     {
@@ -143,6 +159,7 @@ abstract class WechatBase
     public function setMediaId($MediaId)
     {
         $this->replay['MediaId'] = $MediaId;
+        return $this;
     }
     public function getFormat()
     {
