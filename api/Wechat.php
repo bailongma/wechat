@@ -15,7 +15,11 @@ class Wechat extends WechatBase
         $result = $this->parseData();
         if($result) {
             if ($result->MsgType==self::IMAGE) {
-                $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $result->Content);
+                $this->setToUserName($result->FromUserName)
+                ->setFromUserName($result->ToUserName)
+                ->setMsgType(self::IMAGE)
+                ->setMediaId($result->MediaId)
+                ->replay();
             } else {
                 $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $result->Content);
             }

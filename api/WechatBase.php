@@ -158,7 +158,7 @@ abstract class WechatBase
     }
     public function setMediaId($MediaId)
     {
-        $this->replay['MediaId'] = $MediaId;
+        $this->replay['Image']['MediaId'] = $MediaId;
         return $this;
     }
     public function getFormat()
