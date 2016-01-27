@@ -8,14 +8,24 @@ defined('IN')?:exit('not access');
 abstract class WechatBase
 {
     const TEXT = 'text';
+    const IMAGE = 'image';
+    const VOICE = 'voice';
+    const VIDEO = 'video';
+    const SHORTVIDEO = 'shortvideo';
+    const LOCATION = 'location';
+    const LINK = 'link';
+
     private $appId = "";
     private $appSecret = "";
     private $token = "";
     private $encodingAESKey = "";
     private $access_token = "";
 
-    public  $result =  "";
+    public $result = "";
+    public $replay = array();
+
     private $token_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential';
+
     function __construct($argument=[])
     {
         $this->appId = $argument['appId'];
@@ -73,11 +83,26 @@ abstract class WechatBase
 
     public function replay()
     {
-        #
+        $textTpl = "<xml>
+                    <ToUserName><![CDATA[%s]]></ToUserName>
+                    <FromUserName><![CDATA[%s]]></FromUserName>
+                    <CreateTime>%s</CreateTime>
+                    <MsgType><![CDATA[%s]]></MsgType>
+                    <Content><![CDATA[%s]]></Content>
+                    <FuncFlag>0</FuncFlag>
+                    </xml>";
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $msgType, $content);
+        $this->log($resultStr,'result');
+        echo $resultStr;
+        exit;
     }
     public function getContent()
     {
         return $this->result->Content;
+    }
+    public function setContent($Content)
+    {
+        return $this->replay['Content'] =  $Content;
     }
     public function getToUserName()
     {
