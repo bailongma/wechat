@@ -15,6 +15,11 @@ abstract class WechatBase
     const LOCATION = 'location';
     const LINK = 'link';
     const EVENT = 'event';
+    const SUBSCRIBE = 'subscribe';
+    const UNSUBSCRIBE = 'unsubscribe';
+    const SCAN = 'SCAN';
+    const VIEW = 'VIEW';
+
 
     private $appId = "";
     private $appSecret = "";
