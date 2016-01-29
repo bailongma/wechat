@@ -14,6 +14,7 @@ abstract class WechatBase
     const SHORTVIDEO = 'shortvideo';
     const LOCATION = 'location';
     const LINK = 'link';
+    const EVENT = 'event';
 
     private $appId = "";
     private $appSecret = "";
