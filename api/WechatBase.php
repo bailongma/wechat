@@ -187,6 +187,46 @@ abstract class WechatBase
         exit;
     }
 
+    public function receiveEvent()
+    {
+        //
+    }
+
+    public function receiveText()
+    {
+        //
+    }
+
+    public function receiveImage()
+    {
+        //
+    }
+
+    public function receiveVoice()
+    {
+        //
+    }
+
+    public function receiveVideo()
+    {
+        //
+    }
+
+    public function receiveShortVoice()
+    {
+        //
+    }
+
+    public function receiveLocation()
+    {
+        //
+    }
+
+    public function receiveLink()
+    {
+        //
+    }
+
     public function log($str,$key='')
     {
         if(DEBUG) {
