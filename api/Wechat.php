@@ -20,9 +20,21 @@ class Wechat extends WechatBase
                 ->setMsgType(self::IMAGE)
                 ->setMediaId($result->MediaId)
                 ->replay();
+            } elseif($result->MsgType==self::TEXT) {
+                $Content = $this->keyword($result->Content);
+                $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $Content);
             } else {
-                $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $result->Content);
+                $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, '');
             }
+        }
+    }
+    public function keyword($word)
+    {
+        $word = trim($word);
+        if($word=='1') {
+            return 'hahahahahaha';
+        } else {
+            return $word;
         }
     }
 }
