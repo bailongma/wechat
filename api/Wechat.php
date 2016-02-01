@@ -22,7 +22,23 @@ class Wechat extends WechatBase
                 ->replay();
             } elseif($result->MsgType==self::TEXT) {
                 $Content = $this->keyword($result->Content);
-                $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $Content);
+                if($Content=='2') {
+                    $Artcles[0]['Title']='aaa';
+                    $Artcles[0]['Description']='aaaaaaa';
+                    $Artcles[0]['PicUrl']='http://xinzhanguo.cn/img/aaaa.jpg';
+                    $Artcles[0]['Url']='http://xinzhanguo.cn';
+                    $Artcles[1]['Title']='bbbb';
+                    $Artcles[1]['Description']='bbbbbbb';
+                    $Artcles[1]['PicUrl']='http://xinzhanguo.cn/img/bbbb.jpg';
+                    $Artcles[1]['Url']='http://xinzhanguo.cn';
+                    $Artcles[2]['Title']='cccc';
+                    $Artcles[2]['Description']='ccccccc';
+                    $Artcles[2]['PicUrl']='http://xinzhanguo.cn/img/cccc.jpg';
+                    $Artcles[2]['Url']='http://xinzhanguo.cn';
+                    $this->sendNews($Artcles,  $result->FromUserName, $result->ToUserName);
+                } else {
+                    $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $Content);
+                }
             } else {
                 $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, '');
             }
