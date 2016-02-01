@@ -227,6 +227,27 @@ abstract class WechatBase
         //
     }
 
+    public function sendNews($Articles, $fromUsername, $toUsername)
+    {
+        $ArticleCount = count($Articles);
+        $textTpl = '<xml>
+<ToUserName><![CDATA['.$fromUsername.']]></ToUserName>
+<FromUserName><![CDATA['.$toUsername.']]></FromUserName>
+<CreateTime>'.time().'</CreateTime>
+<MsgType><![CDATA[news]]></MsgType>
+<ArticleCount>'.$ArticleCount.'</ArticleCount>
+<Articles>';
+foreach ($Articles as $Article) {
+$textTpl .= '<item>
+<Title><![CDATA['.$Article['Title'].']]></Title>
+<Description><![CDATA['.$Article['Description'].']]></Description>
+<PicUrl><![CDATA['.$Article['PicUrl'].']]></PicUrl>
+<Url><![CDATA['.$Article['Url'].']]></Url>
+</item>';
+}
+$textTpl .= "</Articles>
+</xml>";
+    }
     public function log($str,$key='')
     {
         if(DEBUG) {
