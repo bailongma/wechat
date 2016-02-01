@@ -247,6 +247,8 @@ $textTpl .= '<item>
 }
 $textTpl .= "</Articles>
 </xml>";
+    echo $textTpl;
+    exit;
     }
     public function log($str,$key='')
     {
