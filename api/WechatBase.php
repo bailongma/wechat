@@ -30,7 +30,7 @@ abstract class WechatBase
     public $result = "";
     public $replay = array();
 
-    private $token_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential';
+    private $api_url = 'https://api.weixin.qq.com';
 
     function __construct($argument=[])
     {
@@ -47,9 +47,22 @@ abstract class WechatBase
             exit;
         }
     }
-    public function getAccessToken()
-    {
-        #&appid=APPID&secret=APPSECRET
+    private function getAccessToken() {
+        // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
+        $data = json_decode($this->get_php_file("access_token.php"));
+        if ($data->expire_time < time()) {
+            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$this->appId&secret=$this->appSecret";
+            $res = json_decode($this->httpGet($url));
+            $access_token = $res->access_token;
+            if ($access_token) {
+                $data->expire_time = time() + 7000;
+                $data->access_token = $access_token;
+                $this->set_php_file("access_token.php", json_encode($data));
+            }
+        } else {
+            $access_token = $data->access_token;
+        }
+        return $access_token;
     }
     private function checkSignature()
     {
@@ -249,6 +262,52 @@ $textTpl .= "</Articles>
 </xml>";
     echo $textTpl;
     exit;
+    }
+    public function createMenu($menu)
+    {
+        $access_token = $this->getAccessToken();
+        $menu_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+        $this->httpPost($menu_url, $menu);
+    }
+    private function httpGet($url)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 500);
+        // 为保证第三方服务器与微信服务器之间数据传输的安全性，所有微信接口采用https方式调用，必须使用下面2行代码打开ssl安全校验。
+        // 如果在部署过程中代码在此处验证失败，请到 http://curl.haxx.se/ca/cacert.pem 下载新的证书判别文件。
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, true);
+        curl_setopt($curl, CURLOPT_URL, $url);
+
+        $res = curl_exec($curl);
+        curl_close($curl);
+
+        return $res;
+    }
+    private function httpPost($url,$data = null){
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        if (!empty($data)){
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        }
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
+    }
+    private function get_php_file($filename)
+    {
+        return trim(substr(file_get_contents($filename), 15));
+    }
+    private function set_php_file($filename, $content)
+    {
+        $fp = fopen($filename, "w");
+        fwrite($fp, "<?php exit();?>" . $content);
+        fclose($fp);
     }
     public function log($str,$key='')
     {

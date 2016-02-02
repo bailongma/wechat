@@ -53,4 +53,73 @@ class Wechat extends WechatBase
             return $word;
         }
     }
+    public function menu(){
+        $menu = '{
+            "button":[
+                {
+                    "name":"推荐",
+                    "sub_button":[
+                        {
+                           "type":"click",
+                           "name":"今日图片",
+                           "key":"图片"
+                        },
+                        {
+                           "type":"click",
+                           "name":"今日音乐",
+                           "key":"音乐"
+                        },
+                        {
+                            "type":"click",
+                            "name":"今日视频",
+                            "key":"视频"
+                        },
+                        {
+                            "type":"click",
+                            "name":"今日文字",
+                            "key":"文字"
+                        }
+                    ]
+                },
+                {
+                    "name":"逛逛",
+                    "sub_button":[
+                        {
+                            "type":"click",
+                            "name":"点击推事件",
+                            "key":"gclick"
+                        },
+                        {
+                           "type":"pic_weixin",
+                           "name":"弹出微信相册发图器",
+                           "key":"gpic_weixin"
+                        },
+                        {
+                            "type":"scancode_push",
+                            "name":"扫码推事件",
+                            "key":"gscancode"
+                        },
+                        {
+                            "type":"location_select",
+                            "name":"弹出地理位置选择器",
+                            "key":"glocation"
+
+                        },
+                        {
+                            "type":"view",
+                            "name":"网页",
+                            "url":"http://xinzhanguo.cn"
+
+                        }
+                    ]
+                },
+                {
+                   "type":"click",
+                   "name":"简介",
+                   "key":"简介"
+                }
+            ]
+        }';
+        $this->createMenu($menu);
+    }
 }
