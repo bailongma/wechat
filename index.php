@@ -28,9 +28,6 @@ $wx['token'] = '';
 $wx['encodingAESKey'] = '';
 
 $wechat = new Wechat($wx);
-if(!empty($_GET['menu'])&&$_GET['menu']==1){
-    $wechat->menu();
-}
 $page = ob_get_contents();
 error_log($page,3, ERROR_LOG_FILE);
 ob_end_flush();
