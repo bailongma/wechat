@@ -267,7 +267,7 @@ $textTpl .= "</Articles>
     {
         $access_token = $this->getAccessToken();
         $menu_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
-        $this->httpPost($menu_url, $menu);
+        return $this->httpPost($menu_url, $menu);
     }
     private function httpGet($url)
     {

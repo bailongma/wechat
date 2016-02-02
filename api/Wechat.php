@@ -120,6 +120,7 @@ class Wechat extends WechatBase
                 }
             ]
         }';
-        $this->createMenu($menu);
+        $res = $this->createMenu($menu);
+        var_dump($res);
     }
 }
