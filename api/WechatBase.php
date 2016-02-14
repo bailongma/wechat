@@ -184,17 +184,17 @@ abstract class WechatBase
     {
         return $this->result->Format;
     }
-    public function sendText($fromUsername,$toUsername,$msgType,$content)
+    public function sendText($fromUsername, $toUsername, $content)
     {
         $textTpl = "<xml>
                     <ToUserName><![CDATA[%s]]></ToUserName>
                     <FromUserName><![CDATA[%s]]></FromUserName>
                     <CreateTime>%s</CreateTime>
-                    <MsgType><![CDATA[%s]]></MsgType>
+                    <MsgType><![CDATA[text]]></MsgType>
                     <Content><![CDATA[%s]]></Content>
                     <FuncFlag>0</FuncFlag>
                     </xml>";
-        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $msgType, $content);
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $content);
         $this->log($resultStr,'result');
         echo $resultStr;
         exit;
