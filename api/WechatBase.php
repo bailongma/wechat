@@ -199,7 +199,40 @@ abstract class WechatBase
         echo $resultStr;
         exit;
     }
-
+    public function sendVoice($fromUsername,$toUsername,$media_id)
+    {
+        $textTpl = "<xml>
+<ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[voice]]></MsgType>
+<Voice>
+<MediaId><![CDATA[%s]]></MediaId>
+</Voice>
+</xml>";
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $media_id);
+        $this->log($resultStr,'result');
+        echo $resultStr;
+        exit;
+    }
+    public function sendVideo($fromUsername, $toUsername, $media_id, $title='', $desc='')
+    {
+        $textTpl = "<xml>
+<ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[video]]></MsgType>
+<Video>
+<MediaId><![CDATA[%s]]></MediaId>
+<Title><![CDATA[%s]]></Title>
+<Description><![CDATA[%s]]></Description>
+</Video>
+</xml>";
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $media_id, $title, $desc);
+        $this->log($resultStr,'result');
+        echo $resultStr;
+        exit;
+    }
     public function receiveEvent()
     {
         //

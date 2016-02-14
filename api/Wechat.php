@@ -37,10 +37,14 @@ class Wechat extends WechatBase
                     $Artcles[2]['Url']='http://xinzhanguo.cn';
                     $this->sendNews($Artcles,  $result->FromUserName, $result->ToUserName);
                 } else {
-                    $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, $Content);
+                    $this->sendText($result->FromUserName, $result->ToUserName, $Content);
                 }
+            } elseif($result->MsgType==self::VOICE) {
+                $this->sendVoice($result->FromUserName,$result->ToUserName,$result->MediaId);
+            } elseif($result->MsgType==self::SHORTVIDEO) {
+                $this->sendVideo($result->FromUserName,$result->ToUserName,$result->MediaId,'shortvideo title','shortvideo desc');
             } else {
-                $this->sendText($result->FromUserName, $result->ToUserName, self::TEXT, '');
+                $this->sendText($result->FromUserName, $result->ToUserName, '');
             }
         }
     }
