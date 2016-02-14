@@ -40,7 +40,7 @@ class Wechat extends WechatBase
                     $this->sendText($result->FromUserName, $result->ToUserName, $Content);
                 }
             } elseif($result->MsgType==self::VOICE) {
-                $this->sendVoice($result->FromUserName,$result->ToUserName,$result->MediaId);
+                //$this->sendVoice($result->FromUserName,$result->ToUserName,$result->MediaId);
                 $this->sendText($result->FromUserName,$result->ToUserName,$result->Recognition);
             } elseif($result->MsgType==self::SHORTVIDEO) {
                 $this->sendText($result->FromUserName, $result->ToUserName, '');

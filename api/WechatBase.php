@@ -197,6 +197,7 @@ abstract class WechatBase
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $content);
         $this->log($resultStr,'result');
         echo $resultStr;
+        exit;
     }
     public function sendVoice($fromUsername,$toUsername,$media_id)
     {
@@ -212,6 +213,7 @@ abstract class WechatBase
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $media_id);
         $this->log($resultStr,'result');
         echo $resultStr;
+        exit;
     }
     public function sendVideo($fromUsername, $toUsername, $media_id, $title='', $desc='')
     {
@@ -229,6 +231,7 @@ abstract class WechatBase
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, time(), $media_id, $title, $desc);
         $this->log($resultStr,'result');
         echo $resultStr;
+        exit;
     }
     public function receiveEvent()
     {
