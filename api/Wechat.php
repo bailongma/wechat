@@ -46,7 +46,7 @@ class Wechat extends WechatBase
                 $this->sendText($result->FromUserName, $result->ToUserName, '');
                 //$this->sendVideo($result->FromUserName,$result->ToUserName,$result->MediaId,'shortvideo title','shortvideo desc');
             } elseif($result->MsgType==self::EVENT) {
-                if($result->Eevnt==self::SUBSCRIBE) {
+                if($result->Event==self::SUBSCRIBE) {
                     $this->sendText($result->FromUserName, $result->ToUserName, 'welcome');
                 } else {
                     echo ' ';
