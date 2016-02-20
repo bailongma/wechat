@@ -7,7 +7,7 @@ require("common.php");
 use api\Jssdk;
 $jssdk = new Jssdk($wx['appId'], $wx['appSecret']);
 $signPackage = $jssdk->GetSignPackage();
-
+error_log(json_encode($signPackage), 3, ERROR_LOG_FILE);
 ?>
 <!DOCTYPE html>
 <html lang="en">
