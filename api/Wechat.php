@@ -23,7 +23,7 @@ class Wechat extends WechatBase
             } elseif($result->MsgType==self::TEXT) {
                 $Content = $this->keyword($result->Content);
                 if($Content=='2') {
-                    $Artcles[0]['Title']='aaa';
+                    $Artcles[0]['Title']='aaaa';
                     $Artcles[0]['Description']='aaaaaaa';
                     $Artcles[0]['PicUrl']='http://xinzhanguo.cn/img/aaaa.jpg';
                     $Artcles[0]['Url']='http://xinzhanguo.cn';
@@ -45,8 +45,14 @@ class Wechat extends WechatBase
             } elseif($result->MsgType==self::SHORTVIDEO) {
                 $this->sendText($result->FromUserName, $result->ToUserName, '');
                 //$this->sendVideo($result->FromUserName,$result->ToUserName,$result->MediaId,'shortvideo title','shortvideo desc');
+            } elseif($result->MsgType==self::EVENT) {
+                if($result->Eevnt==self::SUBSCRIBE) {
+                    $this->sendText($result->FromUserName, $result->ToUserName, 'welcome');
+                } else {
+                    echo ' ';
+                }
             } else {
-                $this->sendText($result->FromUserName, $result->ToUserName, '');
+                echo ' ';
             }
         }
     }
