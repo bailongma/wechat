@@ -48,6 +48,8 @@ class Wechat extends WechatBase
             } elseif($result->MsgType==self::EVENT) {
                 if($result->Event==self::SUBSCRIBE) {
                     $this->sendText($result->FromUserName, $result->ToUserName, 'welcome');
+                } elseif($result->Event==self::SCAN) {
+                    $this->sendText($result->FromUserName, $result->ToUserName, 'welcome');
                 } else {
                     echo ' ';
                 }
