@@ -187,10 +187,6 @@ error_log(json_encode($signPackage), 3, ERROR_LOG_FILE);
       'openCard'
     ]
   });
-  wx.ready(function () {
-    // 在这里调用 API
-  });
-
 /*
  * 注意：
  * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
@@ -222,7 +218,7 @@ wx.ready(function () {
     wx.onMenuShareAppMessage({
       title: '互联网之子',
       desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
-      link: 'http://movie.douban.com/subject/25785114/',
+      link: 'http://wechat.xinzhanguo.cn/demo.php',
       imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
       trigger: function (res) {
         // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
@@ -245,7 +241,7 @@ wx.ready(function () {
   document.querySelector('#onMenuShareTimeline').onclick = function () {
     wx.onMenuShareTimeline({
       title: '互联网之子',
-      link: 'http://movie.douban.com/subject/25785114/',
+      link: 'http://wechat.xinzhanguo.cn/demo.php',
       imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
       trigger: function (res) {
         // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
@@ -269,7 +265,7 @@ wx.ready(function () {
     wx.onMenuShareQQ({
       title: '互联网之子',
       desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
-      link: 'http://movie.douban.com/subject/25785114/',
+      link: 'http://wechat.xinzhanguo.cn/demo.php',
       imgUrl: 'http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg',
       trigger: function (res) {
         alert('用户点击分享到QQ');
@@ -295,7 +291,7 @@ wx.ready(function () {
     wx.onMenuShareWeibo({
       title: '互联网之子',
       desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
-      link: 'http://movie.douban.com/subject/25785114/',
+      link: 'http://wechat.xinzhanguo.cn/demo.php',
       imgUrl: 'http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg',
       trigger: function (res) {
         alert('用户点击分享到微博');
@@ -321,7 +317,7 @@ wx.ready(function () {
     wx.onMenuShareQZone({
       title: '互联网之子',
       desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
-      link: 'http://movie.douban.com/subject/25785114/',
+      link: 'http://wechat.xinzhanguo.cn/demo.php',
       imgUrl: 'http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg',
       trigger: function (res) {
         alert('用户点击分享到QZone');
