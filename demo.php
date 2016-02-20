@@ -13,7 +13,7 @@ $signPackage = $jssdk->GetSignPackage();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Test Jssdk</title>
 </head>
 <body>
 
