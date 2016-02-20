@@ -64,7 +64,7 @@ class Wechat extends WechatBase
         if($word=='1') {
             return 'hahahahahaha';
         } elseif($word=='js') {
-            return 'That go to <a href="http://wechat.xinzhanguo.cn/demo.php">Test Jssdk</a>'
+            return 'That go to <a href="http://wechat.xinzhanguo.cn/demo.php">Test Jssdk</a>';
         } else {
             return $word;
         }
