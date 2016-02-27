@@ -296,6 +296,34 @@ $textTpl .= "</Articles>
     echo $textTpl;
     exit;
     }
+    public function asyn_request($url, $syn = false)
+    {
+        $host = parse_url($url, PHP_URL_HOST);
+        $port = parse_url($url, PHP_URL_PORT);
+        $path = parse_url($url, PHP_URL_PATH);
+        $query = parse_url($url, PHP_URL_QUERY);
+        $fp = fsockopen($host, $port, $errno, $errstr, 30);
+        if($query) {
+            $path = $path.'?'.$query;
+        }
+        if (!$fp) {
+            echo "$errstr ($errno)<br />\n";
+            return false;
+        } else {
+            $out = "GET $path HTTP/1.1\r\n";
+            $out .= "Host: $host\r\n";
+            $out .= "Connection: Close\r\n\r\n";
+            fwrite($fp, $out);
+            $line = '';
+            if($syn) {
+                while (!feof($fp)) {
+                    $line.= fgets($fp, 128);
+                }
+            }
+            fclose($fp);
+            return $line;
+        }
+    }
     public function createMenu($menu)
     {
         $access_token = $this->getAccessToken();
