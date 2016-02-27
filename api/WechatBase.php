@@ -314,14 +314,14 @@ $textTpl .= "</Articles>
             $out .= "Host: $host\r\n";
             $out .= "Connection: Close\r\n\r\n";
             fwrite($fp, $out);
-            $line = '';
+            $content = '';
             if($syn) {
                 while (!feof($fp)) {
-                    $line.= fgets($fp, 128);
+                    $content.= fgets($fp, 128);
                 }
             }
             fclose($fp);
-            return $line;
+            return $content;
         }
     }
     public function createMenu($menu)
